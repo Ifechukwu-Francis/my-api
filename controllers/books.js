@@ -1,5 +1,3 @@
-
-
 let books = [
     {id:1, title: 'the pragmatic Programmer', author: 'David Thomas', year: 1999},
     {id:2, title: 'Clean Code', author: 'Robert Martin', year: 2008},
