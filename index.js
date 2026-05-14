@@ -4,6 +4,7 @@ app.use(express.json());
 
 //Routes
 app.use('/', require('./routes/general'));
+app.use('/books', require('./routes/books'));
 
 // 404 handler
 app.use((req,res) => {
