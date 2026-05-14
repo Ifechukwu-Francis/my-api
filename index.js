@@ -3,30 +3,9 @@ const app = express();
 app.use(express.json());
 
 //Routes
-app.get('/', (req, res) => {
-  res.send('My backend is working!');
-});
+app.use('/', require('./routes/general'));
 
-app.get('/about', (req, res) => {
-    res.json({
-        name: 'Ifechukwu',
-        role:'Backend Engineer in training',
-        month: 1
-    })
-})
-
-app.get('/skills', (req, res) => {
-    res.json({
-        skills: ['JavaScript','Node.js','Express.js']
-    })
-})
-
-app.get('/status',(req,res) => {
-    res.json({
-        status:' Online'
-    })
-})
-
+// 404 handler
 app.use((req,res) => {
     res.status(404).json({
         error: 'Route Not Found',
@@ -34,6 +13,7 @@ app.use((req,res) => {
     })
 })
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 })
