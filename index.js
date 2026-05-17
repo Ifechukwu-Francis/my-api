@@ -3,8 +3,8 @@ const app = express();
 app.use(express.json());
 
 //Routes
-app.use('/', require('./routes/general'));
-app.use('/books', require('./routes/books'));
+app.use('/api/v1', require('./routes/general'));
+app.use('/api/v1/books', require('./routes/books'));
 
 // 404 handler
 app.use((req,res) => {

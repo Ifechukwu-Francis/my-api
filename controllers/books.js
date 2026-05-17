@@ -6,7 +6,32 @@ let books = [
 
 const getAllBooks = (req, res, next) => {
   try {
-    res.json({ books })
+    let result = books
+
+    // Filtering
+    if (req.query.author) {
+      result = result.filter(b =>
+        b.author.toLowerCase().includes(req.query.author.toLowerCase())
+      )
+    }
+
+    if (req.query.year) {
+      result = result.filter(b => b.year === parseInt(req.query.year))
+    }
+
+    // Pagination
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 10
+    const start = (page - 1) * limit
+    const end = start + limit
+    const paginated = result.slice(start, end)
+
+    res.json({
+      total: result.length,
+      page,
+      limit,
+      books: paginated
+    })
   } catch (err) {
     next(err)
   }
